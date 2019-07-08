@@ -34,4 +34,4 @@ make start-client
 
 #### Features
 
-Coming soom
+Coming soon
