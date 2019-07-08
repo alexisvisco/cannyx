@@ -12,5 +12,8 @@ build-client:
 start-server:
 	@cd packages/server && yarn run start
 
+start-client:
+	@cd packages/client && yarn run start
+
 install:
 	@yarn install
