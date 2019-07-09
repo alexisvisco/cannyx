@@ -23,8 +23,8 @@ Their website: https://canny.io/
 #### Running
 
 ```
-git clone https://github.com/alexisvisco/canny-os.git
-cd canny-os
+git clone https://github.com/alexisvisco/cannyx.git
+cd cannyx
 make build (will run: yarn install and yarn build in each packages)
 
 make start-server
@@ -32,6 +32,6 @@ make start-client
 ```
 
 
-#### Features
+#### FeatureRequest
 
 Coming soon

@@ -1,0 +1,16 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:alpine
+    restart: on-failure
+    environment:
+      - POSTGRES_USER=cannyx
+      - POSTGRES_PASSWORD=cannyx
+    volumes:
+      - data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+
+volumes:
+  data: {}
