@@ -44,11 +44,19 @@ const App: React.FC = () => {
 				</div>
 
 				<Card>
-					Your boards will show up here. <a>Click here to create one</a>.
-					<div className="board-table-titles">
-						<H6 className="board-table-title">NAME</H6>
-						<H6 className="board-table-title">POSTS</H6>
+					<div className="board">
+						<div className="board-column">
+							<H6 className="board-table-title">NAME</H6>
+							<p className="board-table-entry-name">This is a board</p>
+						</div>
+						<div className="board-column">
+							<H6 className="board-table-title">POSTS</H6>
+							<p className="board-table-entry-name">12</p>
+						</div>
 					</div>
+
+					{/*Your boards will show up here. <a>Click here to create one</a>.*/ }
+
 				</Card>
 			</div>
 		</div>

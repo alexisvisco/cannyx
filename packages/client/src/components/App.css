@@ -4,21 +4,35 @@
     align-items: center;
 }
 
-
 .board-create {
     align-self: baseline;
     margin-left: auto;
 }
 
-.board-table-titles {
+.board {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    text-transform: capitalize;
+}
+
+
+.board-column {
+    flex: 1 1 0;
+    display: flex;
+    flex-direction: column;
 }
 
 .board-table-title {
+    flex-grow: 1;
     font-size: 12px !important;
     color: #738694;
 }
 
+.board-table-entries {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.board-table-entry-name {
+    flex-grow: 1;
+}
