@@ -2,8 +2,9 @@ import * as Orm from 'typeorm'
 import { Company } from './Company'
 import { FeatureRequest } from './FeatureRequest'
 
-@Orm.Entity({name: 'boards'})
+@Orm.Entity({ name: 'boards' })
 export class Board extends Orm.BaseEntity {
+
 	@Orm.PrimaryGeneratedColumn('uuid')
 	id: string
 
@@ -18,4 +19,5 @@ export class Board extends Orm.BaseEntity {
 
 	@Orm.OneToMany(_ => FeatureRequest, fr => fr.board)
 	featuresRequests: FeatureRequest[]
+
 }

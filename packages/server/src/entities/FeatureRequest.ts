@@ -4,6 +4,7 @@ import { Vote } from './Vote'
 
 @Orm.Entity({ name: 'features_requests' })
 export class FeatureRequest extends Orm.BaseEntity {
+
 	@Orm.PrimaryGeneratedColumn('uuid')
 	id: string
 
@@ -13,7 +14,7 @@ export class FeatureRequest extends Orm.BaseEntity {
 	@Orm.Column()
 	content: string
 
-	@Orm.Column('text', { array: true })
+	@Orm.Column('text', { array: true, default: [] })
 	medias: string[]
 
 	@Orm.ManyToOne(_ => Board, board => board.featuresRequests)
@@ -24,4 +25,5 @@ export class FeatureRequest extends Orm.BaseEntity {
 
 	@Orm.Column({ type: 'bigint' })
 	voteCount: number
+
 }

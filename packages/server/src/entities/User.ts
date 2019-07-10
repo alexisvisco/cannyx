@@ -16,4 +16,5 @@ export class User extends Orm.BaseEntity {
 	@Orm.ManyToMany(_ => Company, company => company.id)
 	@Orm.JoinTable()
 	companies: Company[]
+
 }

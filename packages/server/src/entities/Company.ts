@@ -20,4 +20,5 @@ export class Company extends Orm.BaseEntity {
 
 	@Orm.OneToMany(_ => Board, board => board.company)
 	boards: Board[]
+
 }
