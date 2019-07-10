@@ -32,7 +32,7 @@ const App: React.FC = () => {
 
 			<div id={ 'content' } style={ { margin: 'auto', marginTop: 50, maxWidth: 900 } }>
 				<Callout title={ undefined }>
-					<Tag minimal={ true } intent={ 'primary' }>TIP</Tag> You can invite unlimited teammates to Canny
+					<Tag minimal={ true } intent={ 'warning' }>TIP</Tag> You can invite unlimited teammates to Cannyx
 				</Callout>
 
 
@@ -44,6 +44,7 @@ const App: React.FC = () => {
 				</div>
 
 				<Card>
+					Your boards will show up here. <a>Click here to create one</a>.
 					<div className="board-table-titles">
 						<H6 className="board-table-title">NAME</H6>
 						<H6 className="board-table-title">POSTS</H6>
