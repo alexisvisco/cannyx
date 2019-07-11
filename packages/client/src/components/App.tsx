@@ -2,25 +2,22 @@ import {
     Button,
     Callout,
     Card,
-    Classes, H2, H4, H6, Icon,
+    Classes,
+    H2,
+    H4,
     Navbar,
     NavbarDivider,
     NavbarGroup,
-    NavbarHeading, Position,
-    Tag, Tooltip
+    NavbarHeading,
+    Tag
 } from '@blueprintjs/core'
 import {Alignment} from '@blueprintjs/core/lib/esm/common/alignment'
 import React from 'react'
 import './App.css'
+import {Boards} from "./board/Board";
 
 
 const App: React.FC = () => {
-
-    const data = [
-        {name: "Front", posts: 12},
-        {name: "Backend", posts: 89},
-        {name: "Services", posts: 1},
-    ]
 
     return (
         <div>
@@ -44,58 +41,15 @@ const App: React.FC = () => {
 
                 <br/>
 
-                <div className={'board-title'}>
-                    <H2>Boards</H2>
-                    <Button className={'board-create'} intent={'success'} icon={'add-to-artifact'}>Create</Button>
-                </div>
-
-                <Card>
-                    <div className="board">
-                        <div className="board-column">
-                            <H6 className="board-table-title">NAME</H6>
-                            {
-                                data.map(e =>
-                                    <div>
-                                        <p className="board-table-entry">{e.name}</p>
-                                    </div>
-                                )
-                            }
-
-                        </div>
-                        <div className="board-column">
-                            <H6 className="board-table-title">POSTS</H6>
-                            {
-                                data.map(e =>
-                                    <div>
-                                        <p className="board-table-entry">{e.posts}</p>
-                                    </div>
-                                )
-                            }
-                        </div>
-
-                        <div className="board-column">
-                            <H6 className="board-table-title">ACTIONS</H6>
-                            {
-                                data.map(_ =>
-                                    <div className="board-table-entry">
-                                        <Icon className={'board-icon'} icon={'link'} iconSize={16}/>
-                                        <Tooltip content="Public board" position={Position.TOP}>
-                                            <Icon className={'board-icon'} icon={'eye-open'} iconSize={16}/>
-                                        </Tooltip>
-
-                                        <Icon className={'board-icon'} icon={'settings'} iconSize={16}/>
-                                    </div>
-                                )
-                            }
-
-                        </div>
-                    </div>
-
-                </Card>
+                <Boards boards={[
+                    {name: "Front", posts: 12},
+                    {name: "Backend", posts: 89},
+                    {name: "Services", posts: 1},
+                ]}/>
 
                 <br/>
 
-                <div className={'board-title'}>
+                <div className={'roadmap-title'}>
                     <H2>Roadmap</H2>
                 </div>
 
