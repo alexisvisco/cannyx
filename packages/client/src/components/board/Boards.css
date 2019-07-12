@@ -38,7 +38,6 @@
     flex-grow: 1;
 }
 
-
 .board-table-entry:hover {
     font-weight: 600;
     cursor: pointer;

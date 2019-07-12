@@ -1,13 +1,33 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/*OVVERIDE BLUEPRINT*/
+
+.bp3-button {
+  box-shadow: none !important;
+}
+
+.bp3-navbar {
+  background-color: #106BA3 !important;
+  box-shadow: none !important;
+  color: white !important;
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bp3-navbar-heading {
+  font-size: 24px !important;
+  font-weight: 500;
+}
+
+.bp3-dark .bp3-button:not([class*="bp3-intent-"]) .bp3-icon {
+  color: white !important;
 }
