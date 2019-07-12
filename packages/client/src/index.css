@@ -1,33 +1,39 @@
 body {
-  margin: 0;
+    margin: 0;
+    background-color: #F5F8FA;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.container {
+    margin: 50px auto auto;
+    max-width: 900px;
 }
 
 /*OVVERIDE BLUEPRINT*/
 
 .bp3-button {
-  box-shadow: none !important;
+    box-shadow: none !important;
 }
 
 .bp3-navbar {
-  background-color: #106BA3 !important;
-  box-shadow: none !important;
-  color: white !important;
-  height: 75px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    background-color: #106BA3 !important;
+    box-shadow: none !important;
+    color: white !important;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .bp3-navbar-heading {
-  font-size: 24px !important;
-  font-weight: 500;
+    font-size: 24px !important;
+    font-weight: 500;
 }
 
 .bp3-dark .bp3-button:not([class*="bp3-intent-"]) .bp3-icon {
-  color: white !important;
+    color: white !important;
 }
