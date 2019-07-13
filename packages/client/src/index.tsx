@@ -7,6 +7,7 @@ import { Route, Router } from 'react-router-dom'
 import { CreateBoard } from './routes/CreateBoard'
 import { Header } from './components/header/Header'
 import history from './history'
+import { BoardPosts } from './routes/BoardPosts'
 
 const routing = (
   <Router history={ history }>
@@ -14,6 +15,7 @@ const routing = (
     <div>
       <Route exact path="/" component={ Dashboard }/>
       <Route exact path="/boards" component={ Dashboard }/>
+      <Route exact path="/boards/posts/:id" component={ BoardPosts }/>
       <Route exact path="/boards/create" component={ CreateBoard }/>
     </div>
   </Router>
@@ -25,3 +27,4 @@ render(routing, document.getElementById('root'))
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister()
+

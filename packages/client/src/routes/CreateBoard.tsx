@@ -4,7 +4,7 @@ import './CreateBoard.css'
 
 export const CreateBoard: React.FC = () => {
   return <div className="container">
-    <Card className="fixed">
+    <Card className="create-board-fixed">
       <H2>Create a new board</H2>
       <br/>
       <H5 style={ { fontWeight: 'normal' } }>A board is a place where people can post and vote on ideas for a specific

@@ -1,3 +1,6 @@
+* {
+    font-family: 'Open Sans', sans-serif;
+}
 body {
     margin: 0;
     background-color: #F5F8FA;
@@ -11,6 +14,20 @@ code {
 .container {
     margin: 50px auto auto;
     max-width: 900px;
+}
+
+.card-title {
+    flex-grow: 1;
+    font-size: 14px !important;
+    color: #738694;
+    text-transform: uppercase;
+}
+
+.bp3-card {
+    border: 1px solid rgb(233, 233, 233) !important;
+    border-radius: 5px !important;
+    box-shadow: none !important;
+
 }
 
 /*OVVERIDE BLUEPRINT*/

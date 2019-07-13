@@ -1,0 +1,30 @@
+.board-posts {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.board-posts-sidebar {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+
+.board-posts-post {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin-bottom: 10px;
+}
+
+.board-posts-post-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.board-posts-post-status {
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
