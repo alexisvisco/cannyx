@@ -1,22 +1,35 @@
-import { Alignment, Button, Classes, NavbarGroup, NavbarHeading, Navbar } from '@blueprintjs/core'
-import React from 'react'
-import history from '../../history'
+import * as React from 'react';
+import {
+    ALIGN,
+    HeaderNavigation,
+    StyledNavigationItem as NavigationItem,
+    StyledNavigationList as NavigationList,
+} from 'baseui/header-navigation';
+import {StyledLink as Link} from 'baseui/link';
+import {Button} from 'baseui/button';
 
-export const Header = () => {
-  const handleHome = () => history.push('/')
-
-  return <div>
-    <Navbar className={Classes.DARK}>
-      <div style={{ margin: '0 auto', width: '900px' }}>
-        <NavbarGroup align={Alignment.LEFT}>
-          <NavbarHeading onClick={handleHome} style={{cursor: 'pointer'}}>Cannyx</NavbarHeading>
-        </NavbarGroup>
-        <NavbarGroup align={Alignment.RIGHT}>
-          <Button minimal={true} icon="people" text="People"/>
-          <Button minimal={true} icon="document" text="Changelog"/>
-        </NavbarGroup>
-      </div>
-
-    </Navbar>
-  </div>
-}
+export const Header = () => (
+    <div style={{marginLeft: "auto", marginRight: "auto", maxWidth: "900px"}}>
+        <HeaderNavigation overrides={{Root: {style: {borderBottom: "none"}}}}>
+            <NavigationList $align={ALIGN.left}>
+                <NavigationItem>
+                    <h4>Cannyx</h4>
+                </NavigationItem>
+            </NavigationList>
+            <NavigationList $align={ALIGN.center}/>
+            <NavigationList $align={ALIGN.right}>
+                <NavigationItem>
+                    <Link href="#">Changelog</Link>
+                </NavigationItem>
+                <NavigationItem>
+                    <Link href="#">People</Link>
+                </NavigationItem>
+            </NavigationList>
+            <NavigationList $align={ALIGN.right}>
+                <NavigationItem>
+                    <Button>Dashboard</Button>
+                </NavigationItem>
+            </NavigationList>
+        </HeaderNavigation>
+    </div>
+);
