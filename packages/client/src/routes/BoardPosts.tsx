@@ -1,111 +1,101 @@
-import {
-  Button,
-  Card,
-  Checkbox,
-  FileInput,
-  H5,
-  H6,
-  Icon,
-  InputGroup,
-  Radio,
-  RadioGroup,
-  TextArea
-} from '@blueprintjs/core'
+import { H5, H6, Icon, Radio, RadioGroup } from '@blueprintjs/core'
+import { Block } from 'baseui/block'
+import { Button } from 'baseui/button'
+import { Card } from 'baseui/card'
+import { Checkbox } from 'baseui/checkbox'
+import Search from 'baseui/icon/search'
+import { StatefulInput } from 'baseui/input'
+import { Tag } from 'baseui/tag'
 import * as React from 'react'
-import './BoardPosts.css'
+import { useState } from 'react'
+import { GoPlus } from 'react-icons/go'
 import { UpVote } from '../components/upvote/UpVote'
+import './BoardPosts.css'
 
 export const BoardPosts = () => {
 
+	const [checkedOpen, setCheckedOpen] = useState(true)
+	const [checkedUnderReview, setCheckedUnderReview] = useState(false)
+	const [checkedPlanned, setCheckedPlanned] = useState(false)
+	const [checkedInProgress, setCheckedInProgress] = useState(true)
+	const [checkedComplete, setCheckedComplete] = useState(false)
+	const [checkedClosed, setCheckedClosed] = useState(true)
 
-  return <div className="container">
-    <div className="board-posts">
-      <div className="board-posts-sidebar">
-        <Card className="board-posts-create-posts">
-          <div className="card-title">Create a post</div>
-          <br/>
-          <InputGroup style={ { height: '45px' } }
-                      placeholder="Title"
-                      large={ true }
-                      type={ 'text' }
-          />
-          <br/>
-          <TextArea
-            style={ { width: '100%' } }
-            placeholder="Detail"
-            growVertically={ true }
-            large={ true }
-          />
-          <br/>
-          <br/>
-          <FileInput text="Image?"/>
-          <br/>
-          <br/>
-          <div style={ { width: '100%', display: 'flex' } }>
-            <Button intent="primary" style={ { marginLeft: 'auto' } }>Create Post</Button>
-          </div>
-        </Card>
+	const SearchIcon = () => {
+		return (
+			<Block display="flex" alignItems="center" paddingLeft="scale500">
+				<Search size="18px"/>
+			</Block>
+		)
+	}
 
-        <br/>
-        <br/>
+	return <div className="container">
+		<div className="board-posts">
+			<div className="board-posts-sidebar">
+				<Button size="compact" startEnhancer={ () => <GoPlus/> }>Create post</Button>
 
-        <H5>Status</H5>
+				<br/>
 
-        <Checkbox checked={ true } label="Open"/>
-        <Checkbox checked={ true } label="Under review"/>
-        <Checkbox checked={ true } label="Planned"/>
-        <Checkbox checked={ true } label="In Progress"/>
-        <Checkbox label="Complete"/>
-        <Checkbox label="Closed"/>
+				<H5>Status</H5>
 
-        <br/>
+				<Checkbox checked={ checkedOpen } onChange={ () => setCheckedOpen(!checkedOpen) }>Open</Checkbox>
+				<Checkbox checked={ checkedUnderReview } onChange={ () => setCheckedUnderReview(!checkedUnderReview) }>Under
+					review</Checkbox>
+				<Checkbox checked={ checkedPlanned } onChange={ () => setCheckedPlanned(!checkedPlanned) }>Planned</Checkbox>
+				<Checkbox checked={ checkedInProgress } onChange={ () => setCheckedInProgress(!checkedInProgress) }>In
+					Progress</Checkbox>
+				<Checkbox checked={ checkedComplete }
+									onChange={ () => setCheckedComplete(!checkedComplete) }>Complete</Checkbox>
+				<Checkbox checked={ checkedClosed } onChange={ () => setCheckedClosed(!checkedClosed) }>Closed</Checkbox>
 
-        <H5>Sort</H5>
+				<br/>
 
-        <RadioGroup
-          onChange={ () => console.log() }
+				<H5>Sort</H5>
 
-        >
-          <Radio label="Trending" value="trending"/>
-          <Radio label="Top" value="top"/>
-          <Radio label="Newest" value="newest"/>
-          <Radio label="Oldest" value="oldest"/>
-        </RadioGroup>
+				<RadioGroup
+					onChange={ () => console.log() }
 
-      </div>
-      <Card style={ { width: '100%', marginLeft: '35px', height: 'fit-content' } }>
-        <InputGroup style={ { boxShadow: 'none' } }
-                    leftIcon="search"
-                    placeholder="Search posts..."
-                    round={ true }
-        />
+				>
+					<Radio label="Trending" value="trending"/>
+					<Radio label="Top" value="top"/>
+					<Radio label="Newest" value="newest"/>
+					<Radio label="Oldest" value="oldest"/>
+				</RadioGroup>
 
-        <br/>
+			</div>
+			<div style={ { width: '100%', marginLeft: '35px', height: 'fit-content' } }>
+				<Card>
+					<StatefulInput
+						overrides={ { Before: SearchIcon } }
+						placeholder="Search post"
+					/>
 
-        <div className="board-posts-post">
-          <UpVote vote={ 12 } voted={ true }/>
-          <div className="board-posts-post-content">
-            <H6>Feature upvote</H6>
-          </div>
-          <div style={ { display: 'flex', flexDirection: 'row', marginLeft: 'auto' } }>
-            <Icon style={ { marginTop: '3px', marginRight: '5px' } } color="#e9e9e9" icon="comment"/>
-            <div>19</div>
-          </div>
-        </div>
+					<br/>
+					<div className="board-posts-post">
+						<UpVote vote={ 12 } voted={ true }/>
+						<div className="board-posts-post-content">
+							<H6>Feature upvote</H6>
+						</div>
+						<div style={ { display: 'flex', flexDirection: 'row', marginLeft: 'auto' } }>
+							<Icon style={ { marginTop: '3px', marginRight: '5px' } } color="#e9e9e9" icon="comment"/>
+							<div>19</div>
+						</div>
+					</div>
 
-        <div className="board-posts-post">
-          <UpVote vote={ 45 } voted={ true }/>
-          <div className="board-posts-post-content">
-            <H6>Feature upvote</H6>
-            <div className="board-posts-post-status" style={{color: 'green'}}>PLANNED</div>
-          </div>
+					<div className="board-posts-post">
+						<UpVote vote={ 45 } voted={ true }/>
+						<div className="board-posts-post-content">
+							<H6>Feature upvote</H6>
+							<Tag closeable={ false } variant="outlined" kind="positive">planned</Tag>
+						</div>
 
-          <div style={ { display: 'flex', flexDirection: 'row', marginLeft: 'auto' } }>
-            <Icon style={ { marginTop: '3px', marginRight: '5px' } } color="#e9e9e9" icon="comment"/>
-            <div>1</div>
-          </div>
-        </div>
-      </Card>
-    </div>
-  </div>
+						<div style={ { display: 'flex', flexDirection: 'row', marginLeft: 'auto' } }>
+							<Icon style={ { marginTop: '3px', marginRight: '5px' } } color="#e9e9e9" icon="comment"/>
+							<div>1</div>
+						</div>
+					</div>
+				</Card>
+			</div>
+		</div>
+	</div>
 }
