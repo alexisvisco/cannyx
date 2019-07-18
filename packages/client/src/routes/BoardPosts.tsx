@@ -83,7 +83,7 @@ export const BoardPosts = () => {
         <br/>
 
         <div className="board-posts-post">
-          <UpVote vote={ 12 } voted={ true } hideBorder={ true }/>
+          <UpVote vote={ 12 } voted={ true }/>
           <div className="board-posts-post-content">
             <H6>Feature upvote</H6>
           </div>
@@ -94,7 +94,7 @@ export const BoardPosts = () => {
         </div>
 
         <div className="board-posts-post">
-          <UpVote vote={ 45 } voted={ true } hideBorder={ true }/>
+          <UpVote vote={ 45 } voted={ true }/>
           <div className="board-posts-post-content">
             <H6>Feature upvote</H6>
             <div className="board-posts-post-status" style={{color: 'green'}}>PLANNED</div>

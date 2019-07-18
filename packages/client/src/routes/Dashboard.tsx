@@ -1,37 +1,50 @@
+import { Button, SIZE } from 'baseui/button'
 import React from 'react'
-import {Boards} from '../components/board/Boards'
-import {RoadMapOverview} from '../components/roadmap/RoadMapOverview'
-import {Tip} from '../components/tip/Tip'
-import {Heading, HeadingLevel} from "baseui/heading";
-
+import { GoPlus } from 'react-icons/go'
+import { Boards } from '../components/board/Boards'
+import { RoadMapOverview } from '../components/roadmap/RoadMapOverview'
+import { Tip } from '../components/tip/Tip'
+import { Heading, HeadingLevel } from 'baseui/heading'
+import history from '../history'
 
 const Dashboard: React.FC = () => {
-    return (
-        <div className="container">
 
-            <HeadingLevel>
+	const handleCreateDashboard = () => history.push('/boards/create')
 
-                <Tip/>
+	const CreateBoard = () => <Button onClick={ handleCreateDashboard } size={ SIZE.compact }
+																		startEnhancer={ () => <GoPlus/> }>Create</Button>
 
-                <br/>
+	return (
+		<div className="container">
+
+			<HeadingLevel>
+
+				<Tip/>
+
+				<br/>
 
 
-                <Heading styleLevel={5}>Boards</Heading>
+				<div style={ { display: 'flex', alignItems: 'center' } }>
+					<Heading styleLevel={ 5 }>Boards</Heading>
+					<div style={ { marginLeft: 'auto' } }>
+						<CreateBoard/>
+					</div>
+				</div>
 
-                <Boards boards={[
-                    {name: 'Front', posts: 12},
-                    {name: 'Backend', posts: 89},
-                    {name: 'Services', posts: 1}
-                ]}/>
+				<Boards boards={ [
+					{ name: 'Front', posts: 12 },
+					{ name: 'Backend', posts: 89 },
+					{ name: 'Services', posts: 1 }
+				] }/>
 
-                <Heading styleLevel={5}>Roadmap</Heading>
+				<Heading styleLevel={ 5 }>Roadmap</Heading>
 
-                <RoadMapOverview/>
+				<RoadMapOverview/>
 
-            </HeadingLevel>
+			</HeadingLevel>
 
-        </div>
-    )
+		</div>
+	)
 }
 
 export default Dashboard

@@ -1,6 +1,11 @@
 * {
     font-family: 'Open Sans', sans-serif;
 }
+
+*:focus {
+    outline: none;
+}
+
 body {
     margin: 0;
     background-color: #F5F8FA;

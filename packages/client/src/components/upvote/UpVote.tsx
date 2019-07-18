@@ -1,23 +1,20 @@
 import * as React from 'react'
-import { Icon } from '@blueprintjs/core'
+import { GoTriangleUp } from 'react-icons/go'
 import './UpVote.css'
 
 interface IProps {
-  vote: number,
-  voted: boolean,
-  hideBorder?: boolean
+	vote: number,
+	voted: boolean,
 }
 
-const colorVoted = '#336791'
+const colorVoted = '#276ef1'
 const colorNotVoted = '#8A9BA8'
 
-export const UpVote = ({ vote, voted, hideBorder = false }: IProps) => {
-  console.log(hideBorder)
-  return <div>
-    <div className="upvote" style={ { border: hideBorder ? 'none' : '1px solid #e9e9e9' } }>
-      <Icon icon="chevron-up" iconSize={ 20 }
-            color={ voted ? colorVoted : colorNotVoted }/>
-      <div className="upvote-count">{ vote }</div>
-    </div>
-  </div>
+export const UpVote = ({ vote, voted }: IProps) => {
+	return <div>
+		<div className="upvote">
+			<GoTriangleUp size={ 24 } color={ voted ? colorVoted : colorNotVoted }/>
+			<div className="upvote-count">{ vote }</div>
+		</div>
+	</div>
 }
