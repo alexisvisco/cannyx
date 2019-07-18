@@ -6,6 +6,7 @@ import { RoadMapOverview } from '../components/roadmap/RoadMapOverview'
 import { Tip } from '../components/tip/Tip'
 import { Heading, HeadingLevel } from 'baseui/heading'
 import history from '../history'
+import { Block } from 'baseui/block'
 
 const Dashboard: React.FC = () => {
 
@@ -21,11 +22,10 @@ const Dashboard: React.FC = () => {
 
 				<Tip/>
 
-				<br/>
-
+				<Block as="br" />
 
 				<div style={ { display: 'flex', alignItems: 'center' } }>
-					<Heading styleLevel={ 5 }>Boards</Heading>
+					<Heading styleLevel={ 4 }>Boards</Heading>
 					<div style={ { marginLeft: 'auto' } }>
 						<CreateBoard/>
 					</div>
@@ -37,7 +37,10 @@ const Dashboard: React.FC = () => {
 					{ name: 'Services', posts: 1 }
 				] }/>
 
-				<Heading styleLevel={ 5 }>Roadmap</Heading>
+				<Block as="br" />
+				<Block as="br" />
+
+				<Heading styleLevel={ 4 }>Roadmap</Heading>
 
 				<RoadMapOverview/>
 

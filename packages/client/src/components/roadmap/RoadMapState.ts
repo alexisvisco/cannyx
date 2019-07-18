@@ -1,26 +1,29 @@
-export enum States {
+export enum State {
   Planned,
   InProgress,
-  Done
+  Done,
+  Complete,
+  Closed,
 }
 
-export const enumList = [States.Planned, States.InProgress, States.Done]
+export const stateList = [State.Planned, State.InProgress, State.Done, State.Complete, State.Closed]
 
 export interface RoadMapStateDescriptor {
   color: string,
   name: string
 }
 
-export const getRoadMapStateDescriptor = (state: States): RoadMapStateDescriptor => {
+export const getRoadMapStateDescriptor = (state: State): RoadMapStateDescriptor => {
   switch (state) {
-    case States.InProgress:
-      console.log('here')
+    case State.InProgress:
       return { color: '#48AFF0', name: 'In Progress' }
-    case States.Planned:
-      console.log('here 1')
+    case State.Planned:
       return { color: '#C274C2', name: 'Planned' }
-    case States.Done:
-      console.log('here 2')
+    case State.Done:
       return { color: '#62D96B', name: 'Done' }
+    case State.Complete:
+      return { color: '#30a800', name: 'Complete' }
+    case State.Closed:
+      return { color: '#d93742', name: 'Closed' }
   }
 }
