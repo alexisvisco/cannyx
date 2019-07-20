@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@blueprintjs/core": "^3.17.1",
     "@cannyx/commons": "file:./../common",
     "@types/baseui": "^8.0.0",
     "@types/jest": "24.0.15",

@@ -94,7 +94,7 @@ export const BoardPosts = () => {
           {
             checkboxs.map(([key], index) => {
               return <StateCheckbox key={ index } name={ key } getter={ checkboxState[key] }
-                                    setter={ setCheckboxState } padding={ index != checkboxs.length ? 10 : 0 }/>
+                                    setter={ setCheckboxState } padding={ index !== checkboxs.length ? 10 : 0 }/>
             })
           }
 
