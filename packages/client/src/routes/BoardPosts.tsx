@@ -1,68 +1,100 @@
-import { Icon } from '@blueprintjs/core'
 import { Block } from 'baseui/block'
 import { Button } from 'baseui/button'
 import { Card } from 'baseui/card'
 import { Checkbox } from 'baseui/checkbox'
-import Search from 'baseui/icon/search'
 import { StatefulInput } from 'baseui/input'
 import { Tag } from 'baseui/tag'
 import * as React from 'react'
 import { useReducer } from 'react'
-import { GoPlus } from 'react-icons/go'
+import { GoComment, GoPlus, GoSearch } from 'react-icons/go'
 import { UpVote } from '../components/upvote/UpVote'
 import './BoardPosts.css'
 import { Heading, HeadingLevel } from 'baseui/heading'
 import { Radio, StatefulRadioGroup } from 'baseui/radio'
-import { getRoadMapStateDescriptor, stateList } from '../components/roadmap/RoadMapState'
+import { getRoadMapStateDescriptor, RoadMapStateDescriptor, State, stateList } from '../components/roadmap/RoadMapState'
+import history from '../history'
 
 interface CheckboxState {
   [t: string]: boolean
 }
 
+interface IProps {
+  posts: {
+    title: string,
+    votes: number,
+    voted: boolean,
+    comments: number,
+    status?: RoadMapStateDescriptor
+  }[]
+}
+
 const initialCheckboxStates = stateList.reduce((prev, curr) => {
-  const state = getRoadMapStateDescriptor(curr)
-  prev[state.name] = true
-  return prev
+  return { [getRoadMapStateDescriptor(curr).name]: true, ...prev }
 }, {} as CheckboxState)
 
-console.log(initialCheckboxStates)
 
 const checkboxReducer = (state, action) => {
-  console.log(action, state)
   state[action] = !state[action]
-  return state
+  return { ...state }
 }
 
 export const BoardPosts = () => {
+
+  const props: IProps = {
+    posts: [
+      {
+        title: 'Hello feature',
+        status: getRoadMapStateDescriptor(State.Complete),
+        comments: 12,
+        voted: false,
+        votes: 34
+      },
+      {
+        title: 'Dropbox integration',
+        status: getRoadMapStateDescriptor(State.Planned),
+        comments: 34,
+        voted: false,
+        votes: 1
+      },
+      { title: 'Drag and drop pictures', comments: 1, voted: true, votes: 7 }
+    ]
+  }
 
   const [checkboxState, setCheckboxState] = useReducer(checkboxReducer, initialCheckboxStates)
 
   const SearchIcon = () => {
     return (
       <Block display="flex" alignItems="center" paddingLeft="scale500">
-        <Search size="18px"/>
+        <GoSearch size="18px"/>
       </Block>
     )
   }
 
-  const StateCheckbox = ({ name, getter, setter }) => {
-    return <Checkbox checked={ getter } onChange={ () => setter(name) }>{ name }</Checkbox>
+  const StateCheckbox = ({ name, getter, setter, padding }) => {
+    return <Checkbox
+      overrides={ { Root: { style: { marginBottom: padding + 'px' } }, Label: { style: { fontSize: '16px' } } } }
+      checked={ getter }
+      onChange={ () => setter(name) }>{ name }</Checkbox>
   }
+
+  const checkboxs = Object.entries(checkboxState)
+
+  const handleCreateBoard = () => history.push("/boards/123/create-post")
 
   return <div className="container">
     <div className="board-posts">
       <HeadingLevel>
         <div className="board-posts-sidebar">
-          <Button size="compact" startEnhancer={ () => <GoPlus/> }>Create post</Button>
+          <Button size="compact" startEnhancer={ () => <GoPlus/> } onClick={ handleCreateBoard }>Create post</Button>
 
           <br/>
 
           <Heading styleLevel={ 5 }>Status</Heading>
 
           {
-            Object.entries(checkboxState).map(([key], index) => {
+            checkboxs.map(([key], index) => {
               return <StateCheckbox key={ index } name={ key } getter={ checkboxState[key] }
-                                    setter={ setCheckboxState }/>
+                                    setter={ setCheckboxState } padding={ index != checkboxs.length ? 10 : 0 }/>
             })
           }
 
@@ -84,31 +116,34 @@ export const BoardPosts = () => {
             />
 
             <br/>
-            <div className="board-posts-post">
-              <UpVote vote={ 12 } voted={ true }/>
-              <div className="board-posts-post-content">
-                <Heading styleLevel={ 6 }>Feature upvote</Heading>
-              </div>
-              <div style={ { display: 'flex', flexDirection: 'row', marginLeft: 'auto' } }>
-                <Icon style={ { marginTop: '3px', marginRight: '5px' } } color="#e9e9e9" icon="comment"/>
-                <div>19</div>
-              </div>
-            </div>
 
-            <div className="board-posts-post">
-              <UpVote vote={ 45 } voted={ true }/>
-              <div className="board-posts-post-content">
-                <Heading styleLevel={ 6 }>Feature comment</Heading>
-                <div>
-                  <Tag closeable={ false } variant="light" kind="positive">planned</Tag>
+            {
+
+              props.posts.map((post, index) => {
+                return <div key={ index }>
+                  <div className="board-posts-post">
+                    <UpVote vote={ post.votes } voted={ post.voted }/>
+                    <div className="board-posts-post-content">
+                      <Heading styleLevel={ 6 } marginBottom={ '3px' }
+                               overrides={ { Block: { style: { cursor: 'pointer' } } } }>{ post.title }</Heading>
+                      <div>
+                        {
+                          post.status !== undefined
+                            ? <Tag closeable={ false } variant="light"
+                                   kind={ post.status.intent as any }>{ post.status.name }</Tag>
+                            : <div/>
+                        }
+                      </div>
+                    </div>
+                    <div style={ { display: 'flex', flexDirection: 'row', marginLeft: 'auto' } }>
+                      <div style={ { marginRight: '10px' } }>{ post.comments }</div>
+                      <GoComment size="18px" style={ { marginTop: '3px' } } color="black"/>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              })
 
-              <div style={ { display: 'flex', flexDirection: 'row', marginLeft: 'auto' } }>
-                <Icon style={ { marginTop: '3px', marginRight: '5px' } } color="#e9e9e9" icon="comment"/>
-                <div>1</div>
-              </div>
-            </div>
+            }
           </Card>
         </div>
       </HeadingLevel>

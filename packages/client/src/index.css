@@ -1,5 +1,5 @@
 * {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 *:focus {
@@ -26,6 +26,16 @@ code {
     font-size: 14px !important;
     color: #738694;
     text-transform: uppercase;
+}
+
+.container-fixed {
+    max-width: 640px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 30px 60px 40px;
+    margin: auto;
+    text-align: center;
 }
 
 

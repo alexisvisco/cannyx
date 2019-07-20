@@ -15,7 +15,7 @@ interface IProps {
 
 export const Boards = ({ boards }: IProps) => {
 
-	const handleBoardPosts = (board) => history.push(`/boards/posts/${ board }`)
+	const handleBoardPosts = (board) => history.push(`/boards/${ board }/posts`)
 
 	return <Card>
 		<StatefulList
