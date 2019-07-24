@@ -13,7 +13,7 @@ export const Header = () => {
 
   const handleDashboard = () => history.push('/')
 
-  return <div style={ { marginLeft: 'auto', marginRight: 'auto', maxWidth: '900px' } }>
+  return <div style={ { marginLeft: 'auto', marginRight: 'auto', maxWidth: '900px', borderBottom: '2px solid #e8e8e8'} }>
     <HeaderNavigation overrides={ { Root: { style: { borderBottom: 'none' } } } }>
 
       <h1 style={ { cursor: 'pointer' } } onClick={ handleDashboard }>Cannyx</h1>

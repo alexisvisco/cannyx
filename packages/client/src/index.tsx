@@ -2,32 +2,34 @@ import React from 'react'
 import './index.css'
 import Dashboard from './routes/Dashboard'
 import * as serviceWorker from './serviceWorker'
-import { render } from 'react-dom'
-import { Route, Router } from 'react-router-dom'
-import { CreateBoard } from './routes/CreateBoard'
-import { Header } from './components/header/Header'
+import {render} from 'react-dom'
+import {Route, Router} from 'react-router-dom'
+import {CreateBoard} from './routes/CreateBoard'
+import {Header} from './components/header/Header'
 import history from './history'
-import { BoardPosts } from './routes/BoardPosts'
-import { Provider as StyletronProvider } from 'styletron-react'
-import { Client as Styletron } from 'styletron-engine-atomic'
-import { CreatePost } from './routes/CreatePost'
+import {BoardPosts} from './routes/BoardPosts'
+import {Provider as StyletronProvider} from 'styletron-react'
+import {Client as Styletron} from 'styletron-engine-atomic'
+import {CreatePost} from './routes/CreatePost'
+import {Post} from "./routes/Post";
 
 
 const engine = new Styletron()
 
 const routing = (
-  <StyletronProvider value={ engine } debugAfterHydration>
-    <Router history={ history }>
-      <Header/>
-      <div>
-        <Route exact path="/" component={ Dashboard }/>
-        <Route exact path="/boards" component={ Dashboard }/>
-        <Route exact path="/boards/create" component={ CreateBoard }/>
-        <Route exact path="/boards/:id/posts" component={ BoardPosts }/>
-        <Route exact path="/boards/:id/create-post" component={ CreatePost }/>
-      </div>
-    </Router>
-  </StyletronProvider>
+    <StyletronProvider value={engine} debugAfterHydration>
+        <Router history={history}>
+            <Header/>
+            <div>
+                <Route exact path="/" component={Dashboard}/>
+                <Route exact path="/boards" component={Dashboard}/>
+                <Route exact path="/boards/create" component={CreateBoard}/>
+                <Route exact path="/boards/:id/posts" component={BoardPosts}/>
+                <Route exact path="/boards/:id/create-post" component={CreatePost}/>
+                <Route exact path="/boards/:id/post/:postId" component={Post}/>
+            </div>
+        </Router>
+    </StyletronProvider>
 )
 
 render(routing, document.getElementById('root'))
