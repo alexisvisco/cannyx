@@ -12,15 +12,17 @@ export const CreatePost: React.FC = () => {
 
   const handleBackNavigation = () => history.goBack()
 
-  return <div className="container">
+  return <div className="container" style={ { height: '100%' } }>
     <div className="container-fixed">
       <Card>
         <HeadingLevel>
           <Heading styleLevel={ 4 }>
-            Create a post
+            Create a new post
           </Heading>
           <HeadingLevel>
-
+            <Heading styleLevel={ 5 }>
+              A message is a request where people can express themselves about it and vote for it.
+            </Heading>
             <Input
               placeholder="Feature request title"
             />

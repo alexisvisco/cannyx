@@ -3,51 +3,46 @@ import React from 'react'
 import { GoPlus } from 'react-icons/go'
 import { Boards } from '../components/board/Boards'
 import { RoadMapOverview } from '../components/roadmap/RoadMapOverview'
-import { Tip } from '../components/tip/Tip'
 import { Heading, HeadingLevel } from 'baseui/heading'
 import history from '../history'
 import { Block } from 'baseui/block'
 
 const Dashboard: React.FC = () => {
 
-	const handleCreateDashboard = () => history.push('/boards/create')
+  const handleCreateDashboard = () => history.push('/boards/create')
 
-	const CreateBoard = () => <Button onClick={ handleCreateDashboard } size={ SIZE.compact }
-																		startEnhancer={ () => <GoPlus/> }>Create</Button>
+  const CreateBoard = () => <Button onClick={ handleCreateDashboard } size={ SIZE.compact }
+                                    startEnhancer={ () => <GoPlus/> }>Create</Button>
 
-	return (
-		<div className="container">
+  return (
+    <div className="container">
 
-			<HeadingLevel>
+      <HeadingLevel>
 
-				<Tip/>
+        <div style={ { display: 'flex', alignItems: 'center' } }>
+          <Heading styleLevel={ 4 }>Boards</Heading>
+          <div style={ { marginLeft: 'auto' } }>
+            <CreateBoard/>
+          </div>
+        </div>
 
-				<Block as="br" />
+        <Boards boards={ [
+          { name: 'Front', posts: 12 },
+          { name: 'Backend', posts: 89 },
+          { name: 'Services', posts: 1 }
+        ] }/>
 
-				<div style={ { display: 'flex', alignItems: 'center' } }>
-					<Heading styleLevel={ 4 }>Boards</Heading>
-					<div style={ { marginLeft: 'auto' } }>
-						<CreateBoard/>
-					</div>
-				</div>
+        <Block as="br"/>
+        <Block as="br"/>
 
-				<Boards boards={ [
-					{ name: 'Front', posts: 12 },
-					{ name: 'Backend', posts: 89 },
-					{ name: 'Services', posts: 1 }
-				] }/>
+        <Heading styleLevel={ 4 }>Roadmap</Heading>
 
-				<Block as="br" />
-				<Block as="br" />
+        <RoadMapOverview/>
 
-				<Heading styleLevel={ 4 }>Roadmap</Heading>
+      </HeadingLevel>
 
-				<RoadMapOverview/>
-
-			</HeadingLevel>
-
-		</div>
-	)
+    </div>
+  )
 }
 
 export default Dashboard

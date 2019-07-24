@@ -14,23 +14,29 @@ import { Radio, StatefulRadioGroup } from 'baseui/radio'
 import { getRoadMapStateDescriptor, RoadMapStateDescriptor, State, stateList } from '../components/roadmap/RoadMapState'
 import history from '../history'
 
-interface CheckboxState {
+interface ICheckboxState {
   [t: string]: boolean
 }
 
-interface IProps {
+interface IPosts {
   posts: {
     title: string,
     votes: number,
     voted: boolean,
     comments: number,
     status?: RoadMapStateDescriptor
-  }[]
+  }[],
+}
+
+interface IProps {
+  match: {
+    params: any
+  }
 }
 
 const initialCheckboxStates = stateList.reduce((prev, curr) => {
   return { [getRoadMapStateDescriptor(curr).name]: true, ...prev }
-}, {} as CheckboxState)
+}, {} as ICheckboxState)
 
 
 const checkboxReducer = (state, action) => {
@@ -38,9 +44,11 @@ const checkboxReducer = (state, action) => {
   return { ...state }
 }
 
-export const BoardPosts = () => {
+export const BoardPosts = ({ match }: IProps) => {
 
-  const props: IProps = {
+  console.log(match)
+
+  const posts: IPosts = {
     posts: [
       {
         title: 'Hello feature',
@@ -70,16 +78,16 @@ export const BoardPosts = () => {
     )
   }
 
-  const StateCheckbox = ({ name, getter, setter, padding }) => {
+  const StateCheckbox = ({ name, padding }) => {
     return <Checkbox
       overrides={ { Root: { style: { marginBottom: padding + 'px' } }, Label: { style: { fontSize: '16px' } } } }
-      checked={ getter }
-      onChange={ () => setter(name) }>{ name }</Checkbox>
+      checked={ checkboxState[name] }
+      onChange={ () => setCheckboxState(name) }>{ name }</Checkbox>
   }
 
   const checkboxs = Object.entries(checkboxState)
 
-  const handleCreateBoard = () => history.push("/boards/123/create-post")
+  const handleCreateBoard = () => history.push('/boards/123/create-post')
 
   return <div className="container">
     <div className="board-posts">
@@ -93,8 +101,7 @@ export const BoardPosts = () => {
 
           {
             checkboxs.map(([key], index) => {
-              return <StateCheckbox key={ index } name={ key } getter={ checkboxState[key] }
-                                    setter={ setCheckboxState } padding={ index !== checkboxs.length ? 10 : 0 }/>
+              return <StateCheckbox key={ index } name={ key } padding={ index !== checkboxs.length ? 10 : 0 }/>
             })
           }
 
@@ -119,7 +126,7 @@ export const BoardPosts = () => {
 
             {
 
-              props.posts.map((post, index) => {
+              posts.posts.map((post, index) => {
                 return <div key={ index }>
                   <div className="board-posts-post">
                     <UpVote vote={ post.votes } voted={ post.voted }/>
