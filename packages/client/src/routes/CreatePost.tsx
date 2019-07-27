@@ -6,7 +6,7 @@ import { Input, SIZE } from 'baseui/input'
 import React from 'react'
 
 import history from '../history'
-import { Textarea } from 'baseui/textarea'
+import {StatefulTextarea as Textarea} from 'baseui/textarea';
 
 export const CreatePost: React.FC = () => {
 
