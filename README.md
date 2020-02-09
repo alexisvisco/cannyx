@@ -1,3 +1,8 @@
+### WIP
+
+This project is in waiting progress. All the code may not work as you expect.
+
+
 ### Canny in open source
 
 This project want to be a lite clone of canny.io website version.
